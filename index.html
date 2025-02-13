@@ -4,24 +4,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/index.css">
   <title>Блокнот путешественника</title>
 </head>
 
 <body>
+  <div class="wrapper">
   <header>
-    <img src="./assets/img/black_on_trans.png" class="logo" alt="logo">
-    <h1>Тренажер HTML</h1>
+    <div class="wrapper_logo">
+      <img src="./assets/img/black_on_trans.png" class="logo" alt="logo">
+    </div>
+    <h1>Блокнот путешественника</h1>
+    <nav>
+      <ul class="menu_list">
+        <li class="menu_item"><a href="">Главная</a></li>
+        <li class="menu_item"><a href="">Поездки</a></li>
+        <li class="menu_item"><a href="">Заметки</a></li>
+      </ul>
+    </nav>
   </header>
-  <main></main>
+  <main>
+    <ul class="travel_list">
+      <li class="travel_item">
+        <h3 class="travel_item-title">Название поездки</h3>
+        <p class="travel_item-data">
+          <span class="data-start">01.01.01</span> /
+          <span class="data-end">01.02.02</span>
+        </p>
+        <button class="button button_link">
+          Посмотреть записки
+        </button>
+      </li>
+      <li class="travel_item">
+        <h3 class="travel_item-title">Название поездки</h3>
+        <p class="travel_item-data">
+          <span class="data-start">01.01.01</span> /
+          <span class="data-end">01.02.02</span>
+        </p>
+        <button class="button button_link">
+          Посмотреть записки
+        </button>
+      </li>
+    </ul>
+  </main>
   <footer>
     <ul class="footer_list">
       <li><img class="footer_logo" src="./assets/img/white_on_trans.png" alt="logo"></li>
       <li>2025</li>
       <li>Sergey Lesnevsky</li>
-      <li><a href="https://github.com/Sergey-Lesnevskiy/trainer_html.git\`">GIT</a></li>
+      <li><a href="https://github.com/Sergey-Lesnevskiy/blocknote-travel`">GIT</a></li>
       <li>&copy;</li>
     </ul>
   </footer>
+  </div>
 </body>
 
 </html>
