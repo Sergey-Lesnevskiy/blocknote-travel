@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <title>Страница поездки</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="wrapper_logo">
+        <img src="../assets/img/black_on_trans.png" class="logo" alt="logo">
+      </div>
+      <h1>Список Заметок</h1>
+      <nav>
+        <ul class="menu_list">
+          <li class="menu_item"><a href="../index.html">Главная</a></li>
+          <li class="menu_item"><a href="./traveling.html">Поездки</a></li>
+          <li class="menu_item"><a href="./notes.html">Заметки</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="notes_main">
+      <ul class="note_list">
+        <li class="note_item">
+          <div class="delete_note" data-item="0">&times;</div>
+          <img src="../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png" class="note_img" alt="">
+          <p class="note_item-data">
+            <span class="note_data">01.02.02</span>
+          </p>
+          <p class="note_desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic id placeat praesentium </p>
+          <a href="/" class="note_link" data-item="0">
+            <b class="bold">Читать подробнее<span class="arrow">&darr;</span>
+            </b>
+          </a>
+          <button class="button note_button" data-item="0">Изменить заметку</button>
+        </li>
+      </ul>
+      <div class="new_travel">
+        <p>Добавить заметку</p>
+      </div>
+    </main>
+    <footer>
+      <ul class="footer_list">
+        <li><img class="footer_logo" src="../assets/img/white_on_trans.png" alt="logo"></li>
+        <li>2025</li>
+        <li>Sergey Lesnevsky</li>
+        <li><a href="https://github.com/Sergey-Lesnevskiy/blocknote-travel" class="footer_link">GIT</a></li>
+        <li>&copy;</li>
+      </ul>
+    </footer>
+  </div>
+  <div class="popup">
+    <div class="popup_container">
+      <div class="close_popup">&times;</div>
+      <h3 class="popup_title">
+        Новая заметка
+      </h3>
+      <label>Выберите фото:
+        <input type="file" class="input_file">
+      </label>
+      <label>
+        Выберите дату:
+        <input type="date" class="input_date">
+      </label>
+      <label>Введите текст заметки:
+        <textarea id="text" name="text" class="new-note-description" rows="5" cols="33"></textarea>
+      </label>
+      <button class="button button_popup">Сохранить заметку</button>
+    </div>
+  </div>
+</body>
+<script src="../assets/js/travel.js"></script>
+
+</html>

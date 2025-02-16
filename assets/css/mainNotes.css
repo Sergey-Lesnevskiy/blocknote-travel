@@ -1,0 +1,18 @@
+.note-title{
+  text-align: center;
+}
+.note_images{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.note_images img{
+  width: 400px;
+}
+.note_description{
+  margin-top: 20px;
+  font-size: 20px;
+  border: 1px solid black;
+  padding: 10px;
+}

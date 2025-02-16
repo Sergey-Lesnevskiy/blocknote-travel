@@ -1,0 +1,65 @@
+main {
+  flex: 1 0 auto;
+  padding: 20px 10px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  /* background-image: url(../img/image\ \(2\)-fotor-bg-remover-20250215153238\ \(1\).png);
+  background-repeat: no-repeat;
+  background-size: contain; */
+}
+.travel_list{
+  width: 100%;
+}
+.travel_list::before{
+content: '';
+display: block;
+width: 40%;
+height: 1px;
+background-color: #23527c;
+position: relative;
+left:50%;
+transform: translate(-50%, 0);
+}
+.travel_item{
+  padding: 20px 0;
+  position: relative;
+  /* border-bottom: 1px solid #23527c; */
+}
+.travel_item:after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+
+  background-color: #23527c;
+}
+.button{
+  border-radius: 10px;
+  color: #FFF;
+  background-color: #23527c;
+  padding: 5px;
+}
+.button:hover{
+  cursor: pointer;
+  opacity: 0.9;
+}
+.button_link{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.travel_item-title{
+  margin-bottom: 10px;
+}
+h1 {
+  text-align: center;
+}
