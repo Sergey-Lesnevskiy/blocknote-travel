@@ -17,78 +17,118 @@ const body = document.querySelector('body');
 
 const data = [
   {
-    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '02.02.03', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
+    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
   },
-
+  {
+    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
+  },
+  {
+    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
+  },
 ]
 let img = '';
 
+let numberNote;
+let openPopupInterface = 'add' || 'correct';
+
+console.log(openPopupInterface);
 list.addEventListener('click', (e) => {
   e.preventDefault();
   if (e.target.classList.contains('note_link') || e.target.classList.contains('bold') || e.target.classList.contains('arrow')) {
-    if (!e.target.parentNode.dataset.item) {
-      console.log(e.target.parentNode.parentNode.dataset.item);
-      // сохраняем номер заметки
-    } else {
-      console.log(e.target.parentNode.dataset.item);
-      // сохраняем номер заметки
+    if (e.target.parentNode.parentNode.dataset.item || e.target.parentNode.dataset.item) {
+      numberNote = e.target.parentNode.parentNode.dataset.item? e.target.parentNode.parentNode.dataset.item:e.target.parentNode.dataset.item;
+      localStorage.setItem('keyNote', numberNote)
+      window.location.href = "/pages/notes.html";
     }
   }
   if (e.target.classList.contains('delete_note')) {
-    console.log(e.target.dataset.item);
+    data.splice(e.target.dataset.item, 1);
+    rerenderingList(data);
   }
   if (e.target.classList.contains('note_button')) {
-    console.log(e.target.dataset.item);
+    openPopupInterface = 'correct'
+    openPopup(openPopupInterface, e.target.dataset.item);
+    numberNote = e.target.dataset.item;
   }
 })
-newTravel.addEventListener('click', (e) => {
+
+newTravel.addEventListener('click', () => {
+  openPopup();
+})
+
+function openPopup(openPopupInterface, number){
+  if(openPopupInterface === 'correct'){
+    setTimeout(() => {
+      popupContainer.classList.toggle('show');
+      dateNote.value = data[number].date;
+      textNote.value =  data[number].description;
+      // imgNote.value =  data[number].img;
+    }, 200)
+    popup.classList.toggle('show');
+    body.classList.toggle('lock')
+  }else{
+    setTimeout(() => {
+      popupContainer.classList.toggle('show');
+    }, 200)
+    popup.classList.toggle('show');
+    body.classList.toggle('lock')
+  }
+}
+
+function closePopupButton() {
+  popup.classList.toggle('show');
   setTimeout(() => {
     popupContainer.classList.toggle('show');
   }, 200)
-  popup.classList.toggle('show');
   body.classList.toggle('lock');
-})
-function closePopupButton() {
-  popup.classList.toggle('show');
-  popupContainer.classList.toggle('show');
-  body.classList.toggle('lock');
+  defaultValues();
 }
+
 closePopup.addEventListener('click', closePopupButton)
 
 imgNote.onchange = e => {
   img = URL.createObjectURL(e.target.files[0]);
 };
 
-saveNote.addEventListener('click', (e) => {
-  data.push({
-    img: img, date: dateNote.value, description: textNote.value
-  })
-  createNote(data[data.length - 1], data.length - 1);
-  clearInputs();
-  closePopupButton();
-})
-function clearInputs() {
+function defaultValues(){
+  openPopupInterface = 'add';
   dateNote.value = '';
   textNote.value = '';
   imgNote.value = '';
 }
 
+saveNote.addEventListener('click', () => {
+  if(openPopupInterface === 'correct'){
+    data[numberNote]={
+      img: img, date: dateNote.value, description: textNote.value
+    };
+    rerenderingList(data);
+    closePopupButton();
+    defaultValues();
+  }else{
+    data.push({
+      img: img, date: dateNote.value, description: textNote.value
+    })
+    createNote(data[data.length - 1], data.length - 1);
+    defaultValues();
+    closePopupButton();
+  }
+})
+
 function createListNotes(data) {
-  let ul = document.createElement('ul');
-  ul.classList.add('note_list');
-  main.append(ul);
   data.forEach((element, i) => {
     createNote(element, i)
   });
 }
+
 createListNotes(data);
+
 function createNote(data, index) {
-  console.log(data.description);
   let correctSymbolsLength = data.description.length > symbolsLength ? data.description.substring(0, symbolsLength) : data.description;
   let element = document.createElement('li');
   element.classList.add('note_item');
   element.innerHTML = `
-  <div class="delete_note" data-item="${index}">&times;</div>
+          <div class="delete_note" data-item="${index}">&times;</div>
           <img src="${data.img}" alt="" class="note_img" alt="">
           <p class="note_item-data">
             <span class="note_data">${data.date}</span>
@@ -102,4 +142,9 @@ function createNote(data, index) {
           <button class="button note_button" data-item="${index}">Изменить заметку</button>
   `
   list.append(element);
+}
+
+function rerenderingList(data){
+  list.innerHTML = '';
+  createListNotes(data);
 }
