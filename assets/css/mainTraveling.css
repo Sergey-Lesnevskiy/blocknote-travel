@@ -127,6 +127,8 @@
 }
 .popup_container.show {
   transform: translateX(-50%);
+  height: 100%;
+  padding-bottom: 120px;
 }
 .popup.show{
   display: block;

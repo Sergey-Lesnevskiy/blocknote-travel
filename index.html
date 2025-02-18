@@ -25,27 +25,10 @@
   </header>
   <main>
     <ul class="travel_list">
-      <!-- <li class="travel_item">
-        <h3 class="travel_item-title">Пример поездки</h3>
-        <p class="travel_item-data">
-          <span class="data-start">01.01.2001</span> /
-          <span class="data-end">01.02.2002</span>
-        </p>
-        <button class="button button_link">
-          Посмотреть записки
-        </button>
-      </li>
-      <li class="travel_item">
-        <h3 class="travel_item-title">Название поездки</h3>
-        <p class="travel_item-data">
-          <span class="data-start">01.01.01</span> /
-          <span class="data-end">01.02.02</span>
-        </p>
-        <button class="button button_link">
-          Посмотреть записки
-        </button>
-      </li> -->
     </ul>
+    <div class="new_travel-main">
+      <p>Добавить поездку</p>
+    </div>
   </main>
   <footer>
     <ul class="footer_list">
@@ -56,6 +39,46 @@
       <li>&copy;</li>
     </ul>
   </footer>
+  </div>
+  <div class="popup">
+    <div class="popup_container">
+      <div class="close_popup">&times;</div>
+      <h3 class="popup_title">
+        Новая поездка
+      </h3>
+      <label>
+        Введите название поездки:
+        <input type="text" class="input_start">
+      </label>
+      <label>
+        Выберите дату начала:
+        <input type="date" class="input_start">
+      </label>
+      <label>
+        Выберите дату окончания:
+        <input type="date" class="input_end">
+      </label>
+      <br>
+      <ul class="containerFieldsNote">
+        <li class="fieldsNote">
+          <h3 class="popup_title">
+            Заметка 1
+          </h3>
+          <label>Выберите фото:
+            <input type="file" class="input_file-1">
+          </label>
+          <label>
+            Выберите дату:
+            <input type="date" class="input_date-1">
+          </label>
+          <label class="textarea-label label">Введите текст заметки:
+            <textarea id="text" name="text" class="new-note-description-1" rows="5" cols="33"></textarea>
+          </label>
+        </li>
+      </ul>
+      <p class="added-note">+</p>
+      <button class="button button_popup">Сохранить поездку</button>
+    </div>
   </div>
   <script src="./assets/js/index.js"></script>
 </body>

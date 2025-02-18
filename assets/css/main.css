@@ -1,65 +1,121 @@
 main {
+  position: relative;
   flex: 1 0 auto;
   padding: 20px 10px;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  /* background-image: url(../img/image\ \(2\)-fotor-bg-remover-20250215153238\ \(1\).png);
-  background-repeat: no-repeat;
-  background-size: contain; */
+  margin-top: 20px;
 }
-.travel_list{
+
+.travel_list {
   width: 100%;
+  margin-bottom: 40px;
 }
-.travel_list::before{
-content: '';
-display: block;
-width: 40%;
-height: 1px;
-background-color: #23527c;
-position: relative;
-left:50%;
-transform: translate(-50%, 0);
+
+.travel_list::before {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 1px;
+  background-color: #23527c;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
-.travel_item{
+
+main::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 1px;
+  background-color: #23527c;
+  position: relative;
+  bottom: -50px;
+}
+
+.travel_item {
   padding: 20px 0;
   position: relative;
-  /* border-bottom: 1px solid #23527c; */
 }
-.travel_item:after{
+
+.travel_item:after {
   content: '';
   position: absolute;
   bottom: 0;
   display: block;
   width: 100%;
   height: 1px;
-
   background-color: #23527c;
 }
-.button{
+
+.button {
   border-radius: 10px;
   color: #FFF;
   background-color: #23527c;
   padding: 5px;
 }
-.button:hover{
+
+.button:hover {
   cursor: pointer;
   opacity: 0.9;
 }
-.button_link{
+
+.button_link {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translate(0, -50%);
 }
-.travel_item-title{
+
+.travel_item-title {
   margin-bottom: 10px;
 }
+
 h1 {
   text-align: center;
+}
+
+.new_travel-main {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #dfe2ea;
+  cursor: pointer;
+}
+
+.new_travel-main:hover {
+  background-color: #23527c;
+  color: #dfe2ea;
+}
+label.textarea-label.label{
+  margin-bottom: 25px;
+}
+.added-note{
+  position: relative;
+  margin-bottom: 25px;
+  font-size: 27px;
+  width: 30px;
+  height: 30px;
+  padding-left: 7px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.added-note:hover{
+  color: #FFF;
+  background-color: #23527c;
+  cursor: pointer;
+}
+.added-note:hover::before{
+  content: 'Добавить заметку';
+  position: absolute;
+  left: -52px;
+  top: -18px;
+  width: 150px;
+  font-size: 16px;
+  color: #000;
 }
