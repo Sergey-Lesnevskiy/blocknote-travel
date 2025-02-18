@@ -15,17 +15,20 @@ let symbolsLength = 84;
 
 const body = document.querySelector('body');
 
-const data = [
-  {
-    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
-  },
-  {
-    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
-  },
-  {
-    img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
-  },
-]
+// const data = [
+//   {
+//     img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
+//   },
+//   {
+//     img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
+//   },
+//   {
+//     img: '../assets/img/image (2)-fotor-bg-remover-20250215153238 (1).png', date: '2025-02-05', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus, omnis illo quos rerum tenetur sint odio quaerat aspernatur consequuntur ratione. Necessitatibus optio dolor illo, harum sit inventore possimus cumque.'
+//   },
+// ]
+const dataBlocknote = JSON.parse(localStorage.getItem("dataBlocknote"));
+
+const data = dataBlocknote.dataTravels[dataBlocknote.keyTravel].dataNotes;
 let img = '';
 
 let numberNote;
@@ -37,7 +40,8 @@ list.addEventListener('click', (e) => {
   if (e.target.classList.contains('note_link') || e.target.classList.contains('bold') || e.target.classList.contains('arrow')) {
     if (e.target.parentNode.parentNode.dataset.item || e.target.parentNode.dataset.item) {
       numberNote = e.target.parentNode.parentNode.dataset.item? e.target.parentNode.parentNode.dataset.item:e.target.parentNode.dataset.item;
-      localStorage.setItem('keyNote', numberNote)
+      dataBlocknote.keyNote = numberNote;
+      localStorage.setItem('dataBlocknote', JSON.stringify(dataBlocknote));
       window.location.href = "/pages/notes.html";
     }
   }
