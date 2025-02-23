@@ -92,10 +92,12 @@ h1 {
   background-color: #23527c;
   color: #dfe2ea;
 }
-label.textarea-label.label{
+
+label.textarea-label.label {
   margin-bottom: 25px;
 }
-.added-note{
+
+.added-note {
   position: relative;
   margin-bottom: 25px;
   font-size: 27px;
@@ -105,12 +107,14 @@ label.textarea-label.label{
   border: 1px solid black;
   border-radius: 50%;
 }
-.added-note:hover{
+
+.added-note:hover {
   color: #FFF;
   background-color: #23527c;
   cursor: pointer;
 }
-.added-note:hover::before{
+
+.added-note:hover::before {
   content: 'Добавить заметку';
   position: absolute;
   left: -52px;
@@ -118,4 +122,21 @@ label.textarea-label.label{
   width: 150px;
   font-size: 16px;
   color: #000;
+}
+
+.emptyList {
+  text-align: center;
+}
+
+.valid {
+  visibility:hidden;
+  color: red;
+  font-size: 14px;
+}
+
+input.no-valid ~ .valid {
+  visibility:visible;
+}
+textarea.no-valid ~ .valid {
+  visibility:visible;
 }
