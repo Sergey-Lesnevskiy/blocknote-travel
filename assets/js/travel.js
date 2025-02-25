@@ -1,7 +1,5 @@
 const list = document.querySelector('.note_list');
 const newTravel = document.querySelector('.new_travel');
-const main = document.querySelector('.notes_main');
-// const changeNote = document.querySelector('.note_button');
 const popup = document.querySelector('.popup');
 const popupContainer = document.querySelector('.popup_container');
 const closePopup = document.querySelector('.close_popup');
@@ -12,24 +10,27 @@ const dateNote = document.querySelector('.input_date');
 const textNote = document.querySelector('#text');
 const body = document.querySelector('body');
 
-let symbolsLength = 84;
-
+let symbolsLength = 50;
 
 const dataBlocknote = JSON.parse(localStorage.getItem("dataBlocknote"));
 
 const data = dataBlocknote.dataTravels[dataBlocknote.keyTravel].dataNotes;
+
 let img = '';
 
 let numberNote;
 let openPopupInterface = 'add' || 'correct';
 
+  import { isValidationPopup, addClassValid, removeClassValid } from './index.js';
+
+
 list.addEventListener('click', (e) => {
   e.preventDefault();
   if (e.target.classList.contains('note_link') || e.target.classList.contains('bold') || e.target.classList.contains('arrow')) {
     if (e.target.parentNode.parentNode.dataset.item || e.target.parentNode.dataset.item) {
-      numberNote = e.target.parentNode.parentNode.dataset.item? e.target.parentNode.parentNode.dataset.item:e.target.parentNode.dataset.item;
+      numberNote = e.target.parentNode.parentNode.dataset.item ? e.target.parentNode.parentNode.dataset.item : e.target.parentNode.dataset.item;
       dataBlocknote.keyNote = numberNote;
-      localStorage.setItem('dataBlocknote', JSON.stringify(dataBlocknote));
+      saveSession();
       window.location.href = "/pages/notes.html";
     }
   }
@@ -43,23 +44,26 @@ list.addEventListener('click', (e) => {
     numberNote = e.target.dataset.item;
   }
 })
-
+function saveSession() {
+  dataBlocknote.dataTravels[dataBlocknote.keyTravel].dataNotes = data;
+  localStorage.setItem('dataBlocknote', JSON.stringify(dataBlocknote));
+}
 // popup
 newTravel.addEventListener('click', () => {
   openPopup();
 })
 
-function openPopup(openPopupInterface, number){
-  if(openPopupInterface === 'correct'){
+function openPopup(openPopupInterface, number) {
+  if (openPopupInterface === 'correct') {
     setTimeout(() => {
       popupContainer.classList.toggle('show');
       dateNote.value = data[number].date;
-      textNote.value =  data[number].description;
-      // imgNote.value =  data[number].img;
+      textNote.value = data[number].description;
+      imgNote.value =  data[number].img;
     }, 200)
     popup.classList.toggle('show');
     body.classList.toggle('lock')
-  }else{
+  } else {
     setTimeout(() => {
       popupContainer.classList.toggle('show');
     }, 200)
@@ -83,7 +87,7 @@ imgNote.onchange = e => {
   img = URL.createObjectURL(e.target.files[0]);
 };
 
-function defaultValues(){
+function defaultValues() {
   openPopupInterface = 'add';
   dateNote.value = '';
   textNote.value = '';
@@ -91,20 +95,31 @@ function defaultValues(){
 }
 
 saveNote.addEventListener('click', () => {
-  if(openPopupInterface === 'correct'){
-    data[numberNote]={
-      img: img, date: dateNote.value, description: textNote.value
-    };
-    rerenderingList(data);
-    closePopupButton();
-    defaultValues();
-  }else{
-    data.push({
-      img: img, date: dateNote.value, description: textNote.value
-    })
-    createNote(data[data.length - 1], data.length - 1);
-    defaultValues();
-    closePopupButton();
+  const arrayInputs = [
+    dateNote, textNote, imgNote
+  ]
+  if (isValidationPopup(dateNote) && isValidationPopup(textNote) && isValidationPopup(imgNote)) {
+    removeClassValid();
+    if (openPopupInterface === 'correct') {
+      data[numberNote] = {
+        img: img, date: dateNote.value, description: textNote.value,
+        imageAll: [URL.createObjectURL(imgNote.files[0])],
+      };
+      rerenderingList(data);
+      closePopupButton();
+      defaultValues();
+      saveSession();
+    } else {
+      data.push({
+        img: img, date: dateNote.value, description: textNote.value, imageAll: [img]
+      })
+      createNote(data[data.length - 1], data.length - 1);
+      defaultValues();
+      closePopupButton();
+      saveSession();
+    }
+  } else {
+    addClassValid(arrayInputs);
   }
 })
 
@@ -126,7 +141,7 @@ function createNote(data, index) {
           <p class="note_item-data">
             <span class="note_data">${data.date}</span>
           </p>
-          <p class="note_desc">${correctSymbolsLength}
+          <p class="note_desc">${correctSymbolsLength}...
           </p>
           <a
               href="/" class="note_link" data-item="${index}">
@@ -137,7 +152,7 @@ function createNote(data, index) {
   list.append(element);
 }
 
-function rerenderingList(data){
+function rerenderingList(data) {
   list.innerHTML = '';
   createListNotes(data);
 }

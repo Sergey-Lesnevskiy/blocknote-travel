@@ -42,21 +42,26 @@
   </div>
   <div class="popup">
     <div class="popup_container">
-      <div class="close_popup">&times;</div>
-      <h3 class="popup_title">
-        Новая заметка
-      </h3>
-      <label>Выберите фото:
-        <input type="file" class="input_file">
-      </label>
-      <label>
-        Выберите дату:
-        <input type="date" class="input_date">
-      </label>
-      <label>Введите текст заметки:
-        <textarea id="text" name="text" class="new-note-description" rows="5" cols="33"></textarea>
-      </label>
-      <button class="button button_popup">Сохранить заметку</button>
+      <div class="popup_wrapper-content">
+        <div class="close_popup">&times;</div>
+        <h3 class="popup_title">
+          Новая заметка
+        </h3>
+        <label>Выберите фото:
+          <input type="file" class="input_file"  accept="image/png, image/jpeg">
+          <span class="valid">Заполните поле</span>
+        </label>
+        <label>
+          Выберите дату:
+          <input type="date" class="input_date">
+          <span class="valid">Заполните поле</span>
+        </label>
+        <label>Введите текст заметки:
+          <textarea id="text" name="text" class="new-note-description" rows="5" cols="33"></textarea>
+          <span class="valid">Заполните поле</span>
+        </label>
+        <button class="button button_popup">Сохранить заметку</button>
+      </div>
     </div>
   </div>
 </body>

@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  min-height: 200px;
 }
 .note_images img{
   width: 400px;

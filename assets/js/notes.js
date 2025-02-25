@@ -9,7 +9,7 @@ const main = document.querySelector('main');
 function createAlbum() {
   let div = document.createElement('div');
   div.classList.add('note_images');
-  data.allImage.forEach(element => {
+  data.imageAll.forEach(element => {
     let img = document.createElement('img');
     img.src = element;
     div.append(img);
