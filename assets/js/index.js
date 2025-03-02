@@ -227,4 +227,3 @@ function removeClassValid() {
 }
 
 // validation
-module.exports = { isValidationPopup, addClassValid, removeClassValid }
