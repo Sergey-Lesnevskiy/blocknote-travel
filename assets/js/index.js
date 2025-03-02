@@ -59,8 +59,8 @@ function createListTravel(data) {
   } else {
     let element = document.createElement('li');
     element.classList.add('emptyList');
-    element.innerHTML = `<h2>
-  Cоздайте поездку первую поездку;
+    element.innerHTML = `<h2 class="default_text">
+      Создайте свою первую поездку
   </h2>
   `;
     list.prepend(element);
