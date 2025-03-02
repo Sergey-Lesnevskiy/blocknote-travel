@@ -15,7 +15,6 @@
 .note_item {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   padding: 10px 5px;
   align-items: center;
   width: 250px;
@@ -29,7 +28,6 @@
   width: 20px;
   height: 20px;
   align-self: end;
-  /* font-size: 18px; */
   border: 1px solid black;
   border-radius: 50%;
   color: #FFF;
@@ -51,8 +49,9 @@
 }
 
 .note_img {
-  max-width: 200px;
-  min-height: 200px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
   margin-bottom: 17px;
 }
 
@@ -64,7 +63,6 @@
 .note_desc {
   font-size: 17px;
   line-height: 1.5;
-  /* min-height: 70px; */
   width: 200px;
   flex: 1 0 auto;
 }

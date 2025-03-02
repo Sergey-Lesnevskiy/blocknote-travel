@@ -14,15 +14,16 @@ let symbolsLength = 50;
 
 const dataBlocknote = JSON.parse(localStorage.getItem("dataBlocknote"));
 
-const data = dataBlocknote.dataTravels[dataBlocknote.keyTravel].dataNotes;
+const data = dataBlocknote.dataTravels[dataBlocknote.keyTravel].dataNotes
+
+function dateSort(data){
+  return data.sort((a, b) => new Date(a.date) - new Date(b.date));
+}
 
 let img = '';
 
 let numberNote;
 let openPopupInterface = 'add' || 'correct';
-
-  import { isValidationPopup, addClassValid, removeClassValid } from './index.js';
-
 
 list.addEventListener('click', (e) => {
   e.preventDefault();
@@ -36,6 +37,8 @@ list.addEventListener('click', (e) => {
   }
   if (e.target.classList.contains('delete_note')) {
     data.splice(e.target.dataset.item, 1);
+    saveSession();
+    dateSort(data);
     rerenderingList(data);
   }
   if (e.target.classList.contains('note_button')) {
@@ -59,7 +62,7 @@ function openPopup(openPopupInterface, number) {
       popupContainer.classList.toggle('show');
       dateNote.value = data[number].date;
       textNote.value = data[number].description;
-      imgNote.value =  data[number].img;
+      imgNote.value = data[number].img;
     }, 200)
     popup.classList.toggle('show');
     body.classList.toggle('lock')
@@ -83,6 +86,7 @@ function closePopupButton() {
 
 closePopup.addEventListener('click', closePopupButton);
 //popup
+
 imgNote.onchange = e => {
   img = URL.createObjectURL(e.target.files[0]);
 };
@@ -105,6 +109,7 @@ saveNote.addEventListener('click', () => {
         img: img, date: dateNote.value, description: textNote.value,
         imageAll: [URL.createObjectURL(imgNote.files[0])],
       };
+      dateSort(data);
       rerenderingList(data);
       closePopupButton();
       defaultValues();
@@ -155,4 +160,20 @@ function createNote(data, index) {
 function rerenderingList(data) {
   list.innerHTML = '';
   createListNotes(data);
+}
+function isValidationPopup(element) {
+  if (!element.value.trim()) {
+    return false;
+  }
+  return true;
+}
+function addClassValid(array) {
+  array.forEach((el) => {
+    isValidationPopup(el) ?
+      el.classList.remove('no-valid') :
+      el.classList.add('no-valid')
+  })
+}
+function removeClassValid() {
+  popup.querySelectorAll('.no-valid').forEach(el=>{el.classList.remove('no-valid')})
 }

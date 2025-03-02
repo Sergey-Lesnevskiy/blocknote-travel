@@ -210,21 +210,22 @@ saveNote.addEventListener('click', (e) => {
 //popup
 
 // validation
-export function isValidationPopup(element) {
+function isValidationPopup(element) {
   if (!element.value.trim()) {
     return false;
   }
   return true;
 }
-export function addClassValid(array) {
+function addClassValid(array) {
   array.forEach((el) => {
     isValidationPopup(el) ?
       el.classList.remove('no-valid') :
       el.classList.add('no-valid')
   })
 }
-export function removeClassValid() {
+function removeClassValid() {
   popup.querySelectorAll('.no-valid').forEach(el=>{el.classList.remove('no-valid')})
 }
 
 // validation
+module.exports = { isValidationPopup, addClassValid, removeClassValid }
