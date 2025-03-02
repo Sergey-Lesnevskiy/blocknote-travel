@@ -16,7 +16,6 @@ function createAlbum() {
   });
   return div;
 }
-console.log(createAlbum());
 function createNote(data) {
   let element = document.createElement('div');
   element.classList.add('note');

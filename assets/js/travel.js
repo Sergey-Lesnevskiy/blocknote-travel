@@ -74,7 +74,6 @@ function openPopup(openPopupInterface, number) {
     body.classList.toggle('lock')
   }
 }
-
 function closePopupButton() {
   popup.classList.toggle('show');
   setTimeout(() => {

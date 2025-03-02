@@ -144,7 +144,6 @@ function validNote(){
 
     arrayFields.forEach(element => {
       if (!isValidationPopup(element)) {
-        console.log('here');
         isValid = isValidationPopup(element);
         addClassValid(arrayFields);
         return
